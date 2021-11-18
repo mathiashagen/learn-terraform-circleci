@@ -71,6 +71,8 @@ workflows:
       - terraform/lint:
           environment: .
           working_directory: .
+          requires:
+            - plan-apply
       - hold-apply:
           type: approval
           requires:

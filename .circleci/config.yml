@@ -1,4 +1,5 @@
-version: 2
+version: 2.1
+orbs: terraform-lint: qventus/terraform-lint@0.0.9
 
 jobs:
   plan-apply:
@@ -7,10 +8,14 @@ jobs:
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
       - checkout
+      - tflint/lint
       - run:
           name: terraform init & plan
           command: |
+            terraform --version
             terraform init -input=false
+            terraform validate
+            terraform fmt -check
             terraform plan -out tfapply -var-file variables.tfvars
       - persist_to_workspace:
           root: .
@@ -59,7 +64,7 @@ jobs:
             terraform apply -auto-approve tfdestroy
 
 workflows:
-  version: 2
+  version: 2.1
   plan_approve_apply:
     jobs:
       - plan-apply

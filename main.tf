@@ -7,14 +7,12 @@ terraform {
   }
   backend "s3" {
     bucket = "circle-ci-backend-20211118150719986000000001"
-    key = "terraform/webapp/terraform.tfstate"
+    key    = "terraform/webapp/terraform.tfstate"
     region = "eu-west-1"
   }
 
   required_version = "> 0.14"
 }
-
-//test
 
 provider "aws" {
   region = var.region

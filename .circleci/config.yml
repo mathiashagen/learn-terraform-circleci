@@ -9,6 +9,7 @@ jobs:
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
       - checkout
+      - terraform-lint/lint
       - run:
           name: terraform init & plan
           command: |
@@ -68,11 +69,6 @@ workflows:
   plan_approve_apply:
     jobs:
       - plan-apply
-      - terraform-lint/lint:
-          checkout: false
-          attach-workspace: true
-          requires:
-            - plan-apply
       - hold-apply:
           type: approval
           requires:

@@ -68,6 +68,7 @@ workflows:
   plan_approve_apply:
     jobs:
       - plan-apply
+      - tflint/lint
       - hold-apply:
           type: approval
           requires:

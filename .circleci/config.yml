@@ -21,7 +21,6 @@ jobs:
           root: .
           paths:
             - .
-      - terraform-lint/lint
 
   apply:
     docker:

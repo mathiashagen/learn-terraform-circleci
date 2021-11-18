@@ -69,6 +69,7 @@ workflows:
     jobs:
       - plan-apply
       - terraform-lint/lint:
+          checkout: false
           attach-workspace: true
           requires:
             - plan-apply

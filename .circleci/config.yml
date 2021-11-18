@@ -69,7 +69,8 @@ workflows:
     jobs:
       - plan-apply
       - tflint/lint
-        - attach-workspace: true
+        - attach-workspace:
+          -at: .
       - hold-apply:
           type: approval
           requires:

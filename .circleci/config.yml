@@ -9,7 +9,6 @@ jobs:
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
       - checkout
-      - terraform-lint/lint
       - run:
           name: terraform init & plan
           command: |
@@ -22,6 +21,7 @@ jobs:
           root: .
           paths:
             - .
+      - terraform-lint/lint
 
   apply:
     docker:

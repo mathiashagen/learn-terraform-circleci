@@ -1,5 +1,6 @@
 version: 2.1
-orbs: terraform-lint: qventus/terraform-lint@0.0.9
+orbs: 
+  terraform-lint: qventus/terraform-lint@0.0.9
 
 jobs:
   plan-apply:

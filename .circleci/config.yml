@@ -1,6 +1,6 @@
 version: 2.1
 orbs: 
-  terraform: orbies/terraform@7.1.0
+  terraform-lint: qventus/terraform-lint@0.0.9
 
 jobs:
   plan-apply:
@@ -68,9 +68,8 @@ workflows:
   plan_approve_apply:
     jobs:
       - plan-apply
-      - terraform/lint:
-          environment: .
-          working_directory: .
+      - terraform-lint/lint:
+          attach-workspace: true
           requires:
             - plan-apply
       - hold-apply:

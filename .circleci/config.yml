@@ -69,7 +69,7 @@ workflows:
     jobs:
       - plan-apply
       - tflint/lint
-        working-directory: /tmp/project
+        attach-workspace: true
       - hold-apply:
           type: approval
           requires:

@@ -69,8 +69,8 @@ workflows:
     jobs:
       - plan-apply
       - terraform/lint:
-          environment: docker
-          working_directory: .
+          environment: .
+          working_directory: /tmp/project
       - hold-apply:
           type: approval
           requires:

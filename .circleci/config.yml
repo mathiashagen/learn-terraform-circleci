@@ -69,6 +69,7 @@ workflows:
     jobs:
       - plan-apply
       - tflint/lint:
+        - checkout: false
         - attach-workspace: true
       - hold-apply:
           type: approval

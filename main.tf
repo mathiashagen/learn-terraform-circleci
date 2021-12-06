@@ -19,6 +19,7 @@ provider "aws" {
 }
 
 resource "random_uuid" "randomid" {}
+resource "random_uuid" "randomid2" {}
 
 resource "aws_iam_user" "circleci" {
   name = var.user
@@ -81,7 +82,7 @@ resource "aws_s3_bucket" "app2" {
     Name = "App Bucket"
   }
 
-  bucket = "${var.app}.${var.label}.${random_uuid.randomid.result}"
+  bucket = "${var.app}.${var.label}.${random_uuid.randomid2.result}"
   acl    = "public-read"
 
   website {

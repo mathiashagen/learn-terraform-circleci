@@ -78,7 +78,7 @@ output "Endpoint" {
 
 resource "aws_instance" "app_server" {
   ami           = "ami-00103874"
-  instance_type = "t2.micro"
+  instance_type = "m1.small"
 
   tags = {
     Name = "ExampleAppServerInstance"

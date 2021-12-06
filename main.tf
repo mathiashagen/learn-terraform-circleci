@@ -49,7 +49,7 @@ resource "aws_iam_user_policy" "circleci" {
 
 resource "aws_s3_bucket" "app" {
   tags = {
-    Name = "App Bucket"
+    Name = "Backend data"
   }
 
   bucket = "${var.app}.${var.label}.${random_uuid.randomid.result}"
@@ -76,11 +76,20 @@ output "Endpoint" {
   value = aws_s3_bucket.app.website_endpoint
 }
 
-resource "aws_instance" "app_server" {
+resource "aws_instance" "frontend" {
   ami           = "ami-00103874"
   instance_type = "m1.small"
 
   tags = {
-    Name = "ExampleAppServerInstance"
+    Name = "Frontend"
+  }
+}
+
+resource "aws_instance" "backend" {
+  ami           = "ami-00103874"
+  instance_type = "m1.small"
+
+  tags = {
+    Name = "Backend"
   }
 }

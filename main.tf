@@ -19,7 +19,6 @@ provider "aws" {
 }
 
 resource "random_uuid" "randomid" {}
-resource "random_uuid" "randomid2" {}
 
 resource "aws_iam_user" "circleci" {
   name = var.user
@@ -77,31 +76,11 @@ output "Endpoint" {
   value = aws_s3_bucket.app.website_endpoint
 }
 
-resource "aws_s3_bucket" "app2" {
+resource "aws_instance" "app_server" {
+  ami           = "ami-830c94e3"
+  instance_type = "t2.micro"
+
   tags = {
-    Name = "App Bucket"
+    Name = "ExampleAppServerInstance"
   }
-
-  bucket = "${var.app}.${var.label}.${random_uuid.randomid2.result}"
-  acl    = "public-read"
-
-  website {
-    index_document = "index.html"
-    error_document = "error.html"
-  }
-  force_destroy = true
-
-}
-
-resource "aws_s3_bucket_object" "app2" {
-  acl          = "public-read"
-  key          = "index.html"
-  bucket       = aws_s3_bucket.app.id
-  content      = file("./assets/index.html")
-  content_type = "text/html"
-
-}
-
-output "Endpoint2" {
-  value = aws_s3_bucket.app2.website_endpoint
 }

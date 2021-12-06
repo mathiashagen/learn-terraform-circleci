@@ -101,6 +101,6 @@ resource "aws_s3_bucket_object" "app2" {
 
 }
 
-output "Endpoint" {
+output "Endpoint2" {
   value = aws_s3_bucket.app2.website_endpoint
 }
